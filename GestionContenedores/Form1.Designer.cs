@@ -28,26 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvContenedores = new System.Windows.Forms.DataGridView();
             this.btnCambiarEstado = new System.Windows.Forms.Button();
             this.lblEstadisticas = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvContenedores)).BeginInit();
+            this.dgvContenedores = new System.Windows.Forms.DataGridView();
+            this.miVistaMapa = new GestionContenedores.VistaMapa();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContenedores)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvContenedores
-            // 
-            this.dgvContenedores.AllowUserToAddRows = false;
-            this.dgvContenedores.AllowUserToDeleteRows = false;
-            this.dgvContenedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvContenedores.Location = new System.Drawing.Point(27, 244);
-            this.dgvContenedores.Name = "dgvContenedores";
-            this.dgvContenedores.ReadOnly = true;
-            this.dgvContenedores.Size = new System.Drawing.Size(452, 137);
-            this.dgvContenedores.TabIndex = 0;
             // 
             // btnCambiarEstado
             // 
@@ -89,32 +78,23 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // gMapControl1
+            // dgvContenedores
             // 
-            this.gMapControl1.Bearing = 0F;
-            this.gMapControl1.CanDragMap = true;
-            this.gMapControl1.EmptyTileColor = System.Drawing.Color.Navy;
-            this.gMapControl1.GrayScaleMode = false;
-            this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.gMapControl1.LevelsKeepInMemmory = 5;
-            this.gMapControl1.Location = new System.Drawing.Point(500, 103);
-            this.gMapControl1.MarkersEnabled = true;
-            this.gMapControl1.MaxZoom = 2;
-            this.gMapControl1.MinZoom = 2;
-            this.gMapControl1.MouseWheelZoomEnabled = true;
-            this.gMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.gMapControl1.Name = "gMapControl1";
-            this.gMapControl1.NegativeMode = false;
-            this.gMapControl1.PolygonsEnabled = true;
-            this.gMapControl1.RetryLoadTile = 0;
-            this.gMapControl1.RoutesEnabled = true;
-            this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(410, 364);
-            this.gMapControl1.TabIndex = 6;
-            this.gMapControl1.Zoom = 0D;
-            this.gMapControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gMapControl1_MouseClick);
+            this.dgvContenedores.AllowUserToAddRows = false;
+            this.dgvContenedores.AllowUserToDeleteRows = false;
+            this.dgvContenedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContenedores.Location = new System.Drawing.Point(27, 244);
+            this.dgvContenedores.Name = "dgvContenedores";
+            this.dgvContenedores.ReadOnly = true;
+            this.dgvContenedores.Size = new System.Drawing.Size(452, 137);
+            this.dgvContenedores.TabIndex = 0;
+            // 
+            // miVistaMapa
+            // 
+            this.miVistaMapa.Location = new System.Drawing.Point(263, 106);
+            this.miVistaMapa.Name = "miVistaMapa";
+            this.miVistaMapa.Size = new System.Drawing.Size(389, 373);
+            this.miVistaMapa.TabIndex = 6;
             // 
             // Form1
             // 
@@ -122,7 +102,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(922, 517);
-            this.Controls.Add(this.gMapControl1);
+            this.Controls.Add(this.miVistaMapa);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblEstadisticas);
@@ -130,21 +110,20 @@
             this.Controls.Add(this.dgvContenedores);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvContenedores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContenedores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvContenedores;
         private System.Windows.Forms.Button btnCambiarEstado;
         private System.Windows.Forms.Label lblEstadisticas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private GMap.NET.WindowsForms.GMapControl gMapControl1;
+        private System.Windows.Forms.DataGridView dgvContenedores;
+        private VistaMapa miVistaMapa;
     }
 }
 

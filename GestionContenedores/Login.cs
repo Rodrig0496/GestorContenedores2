@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionContenedores.Services;
 
 namespace GestionContenedores
 {
     public partial class Login : Form
     {
-        string usersFilePath;
 
         public int NivelPermiso { get; private set; } = -1; 
         public string UsuarioActual { get; private set; } = "";
@@ -21,22 +20,9 @@ namespace GestionContenedores
         public Login()
         {
             InitializeComponent();
-            usersFilePath = Path.Combine(Application.StartupPath, "users.txt");
-            CrearArchivoUsuarios();
         }
 
-        private void CrearArchivoUsuarios()
-        {
-            if (!File.Exists(usersFilePath))
-            {
-                string[] ejemplo = new string[]
-                {
-                    "admin;admin123;0", // admin
-                    "vecino1;clave1;1"  // usuario
-                };
-                File.WriteAllLines(usersFilePath, ejemplo);
-            }
-        }
+
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -52,29 +38,31 @@ namespace GestionContenedores
 
             try
             {
-                var lineas = File.ReadAllLines(usersFilePath);
+                // 1. Instanciamos nuestro servicio LINQ
+                LinqService servicio = new LinqService();
 
-                foreach (var linea in lineas)
+                // 2. Validamos contra la Base de Datos
+                int permiso = servicio.ValidarUsuario(usuario, contrasena);
+
+                if (permiso != -1)
                 {
-                    var partes = linea.Split(';');
-                    if (partes.Length == 3 &&
-                        partes[0].Trim() == usuario &&
-                        partes[1].Trim() == contrasena)
-                    {
-                        UsuarioActual = usuario;
-                        NivelPermiso = int.Parse(partes[2].Trim());
-                        this.DialogResult = DialogResult.OK;
-                        return;
-                    }
-                }
+                    // ¡Login Exitoso!
+                    UsuarioActual = usuario;
+                    NivelPermiso = permiso;
 
-                MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Esto cierra el Login y devuelve OK a quien lo llamó (usualmente Program.cs)
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error leyendo users.txt:\n" + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al conectar con la base de datos:\n" + ex.Message,
+                    "Error Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

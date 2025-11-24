@@ -1,4 +1,4 @@
-﻿using GestionContenedores.Models;
+﻿
 using GestionContenedores.Services;
 using System;
 using System.Collections.Generic;
@@ -14,11 +14,12 @@ namespace GestionContenedores
 {
     public partial class CambioEstado : Form
     {
-        private List<Contenedor> contenedores;
-        private Contenedor contenedorSeleccionado;
+        LinqService _service = new LinqService();
+        private List<Contenedores> contenedores;
+        private Contenedores contenedorSeleccionado;
         public event EventHandler EstadoCambiado;
         public event EventHandler ContenedorAgregado;
-        public CambioEstado(List<Contenedor> contenedoresList)
+        public CambioEstado(List<Contenedores> contenedoresList)
         {
             InitializeComponent();
             contenedores = contenedoresList;
@@ -35,6 +36,20 @@ namespace GestionContenedores
             // Opcional: Seleccionar automáticamente el estado "Util" para un nuevo contenedor
             cmbEstado.SelectedIndex = 0;
         }
+
+        public void SeleccionarContenedorPorId(int id)
+        {
+            // Recorremos los items del ComboBox para encontrar el que coincide con el ID
+            foreach (var item in cmbContenedores.Items)
+            {
+                // Como el item es un string tipo "4 - Parque...", verificamos si empieza con el ID
+                if (item.ToString().StartsWith(id.ToString() + " -"))
+                {
+                    cmbContenedores.SelectedItem = item;
+                    break; // Ya lo encontramos, dejamos de buscar
+                }
+            }
+        }
         private void ConfigurarFormularioAgregar()
         {
             
@@ -48,7 +63,9 @@ namespace GestionContenedores
 
         private void LimpiarCampos()
         {
-            txtId.Text = "";
+            txtId.Text = "Auto"; // El ID lo genera SQL, así que ponemos esto visualmente
+            txtId.Enabled = false; // Desactivamos el campo para que no escriban
+
             txtNombre.Text = "";
             txtDireccion.Text = "";
             txtLatitud.Text = "";
@@ -75,7 +92,10 @@ namespace GestionContenedores
         {
             if (cmbContenedores.SelectedIndex >= 0)
             {
+                // Extraemos el ID del texto del combo (ej: "4 - Parque")
                 int contenedorId = int.Parse(cmbContenedores.SelectedItem.ToString().Split('-')[0].Trim());
+
+                // Buscamos en la lista local que recibimos
                 contenedorSeleccionado = contenedores.FirstOrDefault(c => c.Id == contenedorId);
 
                 if (contenedorSeleccionado != null)
@@ -87,10 +107,9 @@ namespace GestionContenedores
 
         private void MostrarDatosContenedor()
         {
-            
 
-            // Establecer el radio button correspondiente al estado actual
-            if (contenedorSeleccionado.Estado == "Util")
+            if (contenedorSeleccionado.Estado != null &&
+                contenedorSeleccionado.Estado.Trim().Equals("Util", StringComparison.OrdinalIgnoreCase))
             {
                 rbtnUtilizable.Checked = true;
             }
@@ -109,13 +128,22 @@ namespace GestionContenedores
                 return;
             }
 
-            // Actualizar estado según el radio button seleccionado
-            contenedorSeleccionado.Estado = rbtnUtilizable.Checked ? "Util" : "Lleno";
+            try
+            {
+                string nuevoEstado = rbtnUtilizable.Checked ? "Util" : "Lleno";
 
-            // Disparar evento para notificar el cambio
-            EstadoCambiado?.Invoke(this, EventArgs.Empty);
+                // CAMBIO: Llamamos a la BD para actualizar
+                _service.ActualizarEstado(contenedorSeleccionado.Id, nuevoEstado);
 
-            this.Close();
+                // Disparar evento para que Form1 se entere y recargue
+                EstadoCambiado?.Invoke(this, EventArgs.Empty);
+
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar en BD: " + ex.Message);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -127,9 +155,8 @@ namespace GestionContenedores
         {
             try
             {
-                // Validar campos
-                if (string.IsNullOrWhiteSpace(txtId.Text) ||
-                    string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                // Validar campos (QUITAMOS LA VALIDACIÓN DEL ID porque es automático)
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                     string.IsNullOrWhiteSpace(txtLatitud.Text) ||
                     string.IsNullOrWhiteSpace(txtLongitud.Text))
@@ -139,52 +166,35 @@ namespace GestionContenedores
                     return;
                 }
 
-                // Validar que el ID no exista
-                int nuevoId = int.Parse(txtId.Text);
-                if (contenedores.Any(c => c.Id == nuevoId))
-                {
-                    MessageBox.Show("El ID ya existe. Por favor, use un ID diferente", "Error",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // Recoger datos
+                string nombre = txtNombre.Text;
+                string direccion = txtDireccion.Text;
+                double lat = double.Parse(txtLatitud.Text);
+                double lon = double.Parse(txtLongitud.Text);
+                string estado = cmbEstado.SelectedItem.ToString();
 
-                // Crear nuevo contenedor
-                Contenedor nuevoContenedor = new Contenedor
-                {
-                    Id = nuevoId,
-                    Nombre = txtNombre.Text,
-                    Direccion = txtDireccion.Text,
-                    Latitud = double.Parse(txtLatitud.Text),
-                    Longitud = double.Parse(txtLongitud.Text),
-                    Estado = cmbEstado.SelectedItem.ToString()
-                };
+                // CAMBIO: Guardamos directo en BD usando el servicio
+                _service.GuardarContenedor(nombre, direccion, lat, lon, estado);
 
-                // Agregar a la lista local
-                contenedores.Add(nuevoContenedor);
-
-                // Guardar en archivo
-                FileService.GuardarContenedores(contenedores);
-
-                // Disparar evento
+                // Disparar evento para recargar mapa
                 ContenedorAgregado?.Invoke(this, EventArgs.Empty);
 
-                // Actualizar combobox
-                CargarComboBox();
-
-                // Limpiar campos
                 LimpiarCampos();
 
-                MessageBox.Show("Contenedor agregado correctamente", "Éxito",
+                MessageBox.Show("Contenedor guardado en Base de Datos", "Éxito",
                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Opcional: Cerrar después de agregar o recargar combo
+                // this.Close(); 
             }
             catch (FormatException)
             {
-                MessageBox.Show("Por favor, ingrese valores válidos para ID, Latitud y Longitud", "Error",
+                MessageBox.Show("Latitud y Longitud deben ser números válidos", "Error de formato",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al agregar contenedor: {ex.Message}", "Error",
+                MessageBox.Show($"Error al guardar en BD: {ex.Message}", "Error",
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
