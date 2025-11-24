@@ -15,7 +15,7 @@ namespace GestionContenedores
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Form1(1, "Invitado"));
+            Application.Run(new MainForm(1, "Invitado"));
         }
     }
 }

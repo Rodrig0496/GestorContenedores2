@@ -81,3 +81,4 @@ F:\UPT\GestionContenedores_Colque_Lanchipa\GestionContenedores\obj\Debug\Gestion
 F:\UPT\GestionContenedores_Colque_Lanchipa\GestionContenedores\obj\Debug\GestionContenedores.pdb
 F:\UPT\GestionContenedores_Colque_Lanchipa\GestionContenedores\obj\Debug\GestionContenedores.MainForm.resources
 F:\UPT\GestionContenedores_Colque_Lanchipa\GestionContenedores\obj\Debug\GestionContenedores.VistaMapa.resources
+F:\UPT\GestionContenedores_Colque_Lanchipa\GestionContenedores\obj\Debug\GestionContenedores.VistaDashboard.resources
