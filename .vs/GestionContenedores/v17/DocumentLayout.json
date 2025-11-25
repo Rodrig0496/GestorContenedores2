@@ -7,15 +7,15 @@
       "RelativeMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|solutionrelative:gestioncontenedores\\vistadashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|f:\\upt\\gestioncontenedores_colque_lanchipa\\gestioncontenedores\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|F:\\UPT\\GestionContenedores_Colque_Lanchipa\\gestioncontenedores\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|solutionrelative:gestioncontenedores\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|f:\\upt\\gestioncontenedores_colque_lanchipa\\gestioncontenedores\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|F:\\UPT\\GestionContenedores_Colque_Lanchipa\\gestioncontenedores\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|solutionrelative:gestioncontenedores\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|f:\\upt\\gestioncontenedores_colque_lanchipa\\gestioncontenedores\\vistadashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|F:\\UPT\\GestionContenedores_Colque_Lanchipa\\gestioncontenedores\\vistadashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1FD6CA7F-F7EB-4E5B-8BA3-88C05008862E}|GestionContenedores\\GestionContenedores.csproj|solutionrelative:gestioncontenedores\\vistadashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -70,24 +70,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\MainForm.cs",
-              "RelativeDocumentMoniker": "GestionContenedores\\MainForm.cs",
-              "ToolTip": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\MainForm.cs",
-              "RelativeToolTip": "GestionContenedores\\MainForm.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAowFQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T19:30:21.614Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -103,6 +90,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\MainForm.cs",
+              "RelativeDocumentMoniker": "GestionContenedores\\MainForm.cs",
+              "ToolTip": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\MainForm.cs",
+              "RelativeToolTip": "GestionContenedores\\MainForm.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAowFQAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:30:21.614Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MainForm.cs [Dise\u00F1o]",
               "DocumentMoniker": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\MainForm.cs",
@@ -110,8 +109,7 @@
               "ToolTip": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\MainForm.cs [Dise\u00F1o]",
               "RelativeToolTip": "GestionContenedores\\MainForm.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T17:36:53.562Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-11-24T17:36:53.562Z"
             },
             {
               "$type": "Document",
@@ -123,8 +121,7 @@
               "RelativeToolTip": "GestionContenedores\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T16:25:14.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T16:25:14.516Z"
             },
             {
               "$type": "Document",
@@ -136,8 +133,7 @@
               "RelativeToolTip": "GestionContenedores\\VistaDashboard.cs",
               "ViewState": "AgIAAJYAAAAAAAAAAAAuwLgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T19:27:08.3Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T19:27:08.3Z"
             },
             {
               "$type": "Document",
@@ -149,8 +145,7 @@
               "RelativeToolTip": "GestionContenedores\\VistaMapa.cs",
               "ViewState": "AgIAAIsAAAAAAAAAAAAmwK0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T18:15:52.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T18:15:52.884Z"
             },
             {
               "$type": "Document",
@@ -161,8 +156,7 @@
               "ToolTip": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\VistaMapa.cs [Dise\u00F1o]",
               "RelativeToolTip": "GestionContenedores\\VistaMapa.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T18:12:40.283Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-11-24T18:12:40.283Z"
             },
             {
               "$type": "Document",
@@ -173,8 +167,7 @@
               "ToolTip": "F:\\UPT\\GestionContenedores_Colque_Lanchipa\\GestionContenedores\\Form1.cs [Dise\u00F1o]",
               "RelativeToolTip": "GestionContenedores\\Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T15:21:43.136Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-30T15:21:43.136Z"
             },
             {
               "$type": "Document",
@@ -186,8 +179,7 @@
               "RelativeToolTip": "GestionContenedores\\Form1.cs",
               "ViewState": "AgIAAJYAAAAAAAAAAAAwwLYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T15:54:35.26Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T15:54:35.26Z"
             },
             {
               "$type": "Document",
