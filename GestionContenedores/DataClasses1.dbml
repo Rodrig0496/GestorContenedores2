@@ -18,9 +18,26 @@
       <Column Name="Estado" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Trabajadores" Member="Trabajadores">
+    <Type Name="Trabajadores">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DNI" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombres" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Cargo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Turno" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="UsuarioLogin" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.sp_ActualizarEstado" Method="sp_ActualizarEstado">
     <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
     <Parameter Name="NuevoEstado" Parameter="nuevoEstado" Type="System.String" DbType="VarChar(20)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_EliminarContenedor" Method="sp_EliminarContenedor">
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.sp_InsertarContenedor" Method="sp_InsertarContenedor">
@@ -29,10 +46,6 @@
     <Parameter Name="Latitud" Parameter="latitud" Type="System.Double" DbType="Float" />
     <Parameter Name="Longitud" Parameter="longitud" Type="System.Double" DbType="Float" />
     <Parameter Name="Estado" Parameter="estado" Type="System.String" DbType="VarChar(20)" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.sp_EliminarContenedor" Method="sp_EliminarContenedor">
-    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

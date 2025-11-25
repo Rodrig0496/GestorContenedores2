@@ -17,7 +17,8 @@ namespace GestionContenedores
 
         public int NivelPermiso { get; private set; } = -1; 
         public string UsuarioActual { get; private set; } = "";
-
+        public bool EsModoTrabajador { get; set; } = false;
+        private LinqService _service = new LinqService();
         public Login()
         {
             InitializeComponent();
@@ -37,43 +38,37 @@ namespace GestionContenedores
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text.Trim();
-            string contrasena = txtContraseña.Text.Trim();
-
-            if (usuario == "" || contrasena == "")
+            // LÓGICA DIVIDIDA
+            if (EsModoTrabajador)
             {
-                MessageBox.Show("Por favor ingresa usuario y contraseña.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                // 1. Instanciamos nuestro servicio LINQ
-                LinqService servicio = new LinqService();
-
-                // 2. Validamos contra la Base de Datos
-                int permiso = servicio.ValidarUsuario(usuario, contrasena);
-
-                if (permiso != -1)
+                // --- LOGICA PARA TRABAJADORES ---
+                if (_service.ValidarTrabajador(txtUsuario.Text, txtContraseña.Text))
                 {
-                    // ¡Login Exitoso!
-                    UsuarioActual = usuario;
-                    NivelPermiso = permiso;
-
-                    // Esto cierra el Login y devuelve OK a quien lo llamó (usualmente Program.cs)
+                    this.UsuarioActual = txtUsuario.Text;
                     this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Credenciales de TRABAJADOR incorrectas o cuenta inactiva.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error al conectar con la base de datos:\n" + ex.Message,
-                    "Error Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // --- LOGICA ORIGINAL (ADMIN/VECINOS) ---
+                int permiso = _service.ValidarUsuario(txtUsuario.Text, txtContraseña.Text);
+
+                if (permiso != -1)
+                {
+                    this.NivelPermiso = permiso;
+                    this.UsuarioActual = txtUsuario.Text;
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -94,7 +89,7 @@ namespace GestionContenedores
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
     }
 }

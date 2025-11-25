@@ -92,11 +92,23 @@
     <Compile Include="VistaDashboard.Designer.cs">
       <DependentUpon>VistaDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="VistaEstadistica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VistaEstadistica.Designer.cs">
+      <DependentUpon>VistaEstadistica.cs</DependentUpon>
+    </Compile>
     <Compile Include="VistaMapa.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VistaMapa.Designer.cs">
       <DependentUpon>VistaMapa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaTrabajador.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VistaTrabajador.Designer.cs">
+      <DependentUpon>VistaTrabajador.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CambioEstado.resx">
       <DependentUpon>CambioEstado.cs</DependentUpon>
@@ -123,8 +135,14 @@
     <EmbeddedResource Include="VistaDashboard.resx">
       <DependentUpon>VistaDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VistaEstadistica.resx">
+      <DependentUpon>VistaEstadistica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VistaMapa.resx">
       <DependentUpon>VistaMapa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaTrabajador.resx">
+      <DependentUpon>VistaTrabajador.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataClasses1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

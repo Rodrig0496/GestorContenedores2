@@ -28,20 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnEstadistica = new System.Windows.Forms.Button();
+            this.btnRutaTrabajador = new System.Windows.Forms.Button();
             this.btnCambiarEstado = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(55)))), ((int)(((byte)(75)))));
-            this.panelMenu.Controls.Add(this.button3);
-            this.panelMenu.Controls.Add(this.button2);
+            this.panelMenu.Controls.Add(this.pictureBox1);
+            this.panelMenu.Controls.Add(this.btnEstadistica);
+            this.panelMenu.Controls.Add(this.btnRutaTrabajador);
             this.panelMenu.Controls.Add(this.btnCambiarEstado);
             this.panelMenu.Controls.Add(this.label1);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -49,34 +53,6 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(250, 681);
             this.panelMenu.TabIndex = 0;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 190);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(250, 60);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 130);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 60);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "DashBoard";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -99,6 +75,54 @@
             this.panelContenedor.Size = new System.Drawing.Size(1014, 681);
             this.panelContenedor.TabIndex = 1;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 537);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(250, 144);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnEstadistica
+            // 
+            this.btnEstadistica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnEstadistica.FlatAppearance.BorderSize = 0;
+            this.btnEstadistica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstadistica.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstadistica.ForeColor = System.Drawing.Color.White;
+            this.btnEstadistica.Image = ((System.Drawing.Image)(resources.GetObject("btnEstadistica.Image")));
+            this.btnEstadistica.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEstadistica.Location = new System.Drawing.Point(0, 230);
+            this.btnEstadistica.Name = "btnEstadistica";
+            this.btnEstadistica.Size = new System.Drawing.Size(250, 80);
+            this.btnEstadistica.TabIndex = 3;
+            this.btnEstadistica.Text = "Estadistica";
+            this.btnEstadistica.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEstadistica.UseVisualStyleBackColor = true;
+            this.btnEstadistica.Click += new System.EventHandler(this.btnEstadistica_Click);
+            // 
+            // btnRutaTrabajador
+            // 
+            this.btnRutaTrabajador.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRutaTrabajador.FlatAppearance.BorderSize = 0;
+            this.btnRutaTrabajador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRutaTrabajador.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRutaTrabajador.ForeColor = System.Drawing.Color.White;
+            this.btnRutaTrabajador.Image = ((System.Drawing.Image)(resources.GetObject("btnRutaTrabajador.Image")));
+            this.btnRutaTrabajador.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRutaTrabajador.Location = new System.Drawing.Point(0, 150);
+            this.btnRutaTrabajador.Name = "btnRutaTrabajador";
+            this.btnRutaTrabajador.Size = new System.Drawing.Size(250, 80);
+            this.btnRutaTrabajador.TabIndex = 2;
+            this.btnRutaTrabajador.Text = "Ruta Recolección";
+            this.btnRutaTrabajador.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRutaTrabajador.UseVisualStyleBackColor = true;
+            this.btnRutaTrabajador.Click += new System.EventHandler(this.btnRutaTrabajador_Click);
+            // 
             // btnCambiarEstado
             // 
             this.btnCambiarEstado.Dock = System.Windows.Forms.DockStyle.Top;
@@ -106,13 +130,13 @@
             this.btnCambiarEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarEstado.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCambiarEstado.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarEstado.Image = global::GestionContenedores.Properties.Resources.icons8_basura_24;
+            this.btnCambiarEstado.Image = ((System.Drawing.Image)(resources.GetObject("btnCambiarEstado.Image")));
             this.btnCambiarEstado.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCambiarEstado.Location = new System.Drawing.Point(0, 70);
             this.btnCambiarEstado.Name = "btnCambiarEstado";
-            this.btnCambiarEstado.Size = new System.Drawing.Size(250, 60);
+            this.btnCambiarEstado.Size = new System.Drawing.Size(250, 80);
             this.btnCambiarEstado.TabIndex = 1;
-            this.btnCambiarEstado.Text = "CambiarEstado";
+            this.btnCambiarEstado.Text = "Home";
             this.btnCambiarEstado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCambiarEstado.UseVisualStyleBackColor = true;
             this.btnCambiarEstado.Click += new System.EventHandler(this.btnCambiarEstado_Click);
@@ -128,6 +152,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.panelMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -138,7 +163,8 @@
         private System.Windows.Forms.Button btnCambiarEstado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContenedor;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEstadistica;
+        private System.Windows.Forms.Button btnRutaTrabajador;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

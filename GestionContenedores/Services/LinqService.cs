@@ -4,6 +4,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace GestionContenedores.Services
 {
@@ -50,6 +51,44 @@ namespace GestionContenedores.Services
         public void EliminarContenedor(int id)
         {
             db.sp_EliminarContenedor(id);
+        }
+        public int ObtenerProximoId()
+        {
+            // Busca el ID más alto actual. Si no hay ninguno (null), devuelve 0.
+            int maxId = db.Contenedores
+                          .Select(c => (int?)c.Id) // Casteamos a int? por si la tabla está vacía
+                          .Max() ?? 0;
+
+            return maxId + 1; // El siguiente será Max + 1
+        }
+        public bool ValidarTrabajador(string usuario, string password)
+        {
+            // 1. Encriptamos lo que escribió el usuario
+            string passwordEncriptada = EncriptarPassword(password);
+
+            // 2. Comparamos hash con hash
+            var trabajador = db.Trabajadores
+                .FirstOrDefault(t => t.UsuarioLogin == usuario
+                                  && t.PasswordHash == passwordEncriptada // <--- CAMBIO AQUÍ
+                                  && t.Estado == true);
+
+            return trabajador != null;
+        }
+        private string EncriptarPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Convertir el string a array de bytes
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+
+                // Convertir los bytes a string hexadecimal (que es lo que tienes en la BD)
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2")); // "x2" para formato hexadecimal
+                }
+                return builder.ToString().ToUpper(); // ToUpper() porque tu hash está en mayúsculas
+            }
         }
     }
 }

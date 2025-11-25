@@ -35,6 +35,7 @@ namespace GestionContenedores
             // Suscribir el evento del mouse interno
             this.gMapControl1.MouseClick += gMapControl1_MouseClick;
         }
+        private GMapOverlay rutasOverlay = new GMapOverlay("rutas");
         public void EstablecerPermisos(int nivelPermiso)
         {
             _nivelPermisoUsuario = nivelPermiso;
@@ -51,17 +52,33 @@ namespace GestionContenedores
             gMapControl1.MaxZoom = 20;
             gMapControl1.Zoom = 13;
             gMapControl1.Overlays.Add(marcadoresOverlay);
+            gMapControl1.Overlays.Add(rutasOverlay);
         }
+        public void DibujarRuta(List<PointLatLng> puntosRuta)
+        {
+            rutasOverlay.Routes.Clear(); // Limpiar rutas anteriores
 
+            if (puntosRuta.Count < 2) return; // Necesitamos al menos 2 puntos para una línea
+
+            GMapRoute ruta = new GMapRoute(puntosRuta, "RutaRecoleccion");
+            ruta.Stroke = new Pen(Color.Blue, 3); // Línea azul de grosor 3
+
+            rutasOverlay.Routes.Add(ruta);
+            gMapControl1.ZoomAndCenterRoute(ruta); // Enfocar la cámara en la ruta
+        }
+        public void LimpiarRuta()
+        {
+            rutasOverlay.Routes.Clear();
+        }
         private void ConfigurarMenuContextual()
         {
             menuContextual = new ContextMenuStrip();
-            var itemEditar = menuContextual.Items.Add("Editar Estado");
+            
             var itemEliminar = menuContextual.Items.Add("Eliminar Contenedor");
             itemEliminar.ForeColor = Color.Red;
 
             // Al hacer clic en el menú, DISPARAMOS eventos hacia Form1
-            itemEditar.Click += (s, e) => EditarSolicitado?.Invoke(this, _idContenedorSeleccionadoTemporal);
+            
             itemEliminar.Click += (s, e) => EliminarSolicitado?.Invoke(this, _idContenedorSeleccionadoTemporal);
         }
 

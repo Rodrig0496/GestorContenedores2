@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCambiarEstado = new System.Windows.Forms.Button();
             this.lblEstadisticas = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -37,17 +36,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvContenedores)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnCambiarEstado
-            // 
-            this.btnCambiarEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnCambiarEstado.Location = new System.Drawing.Point(197, 387);
-            this.btnCambiarEstado.Name = "btnCambiarEstado";
-            this.btnCambiarEstado.Size = new System.Drawing.Size(114, 32);
-            this.btnCambiarEstado.TabIndex = 1;
-            this.btnCambiarEstado.Text = "Cambiar Estado";
-            this.btnCambiarEstado.UseVisualStyleBackColor = false;
-            this.btnCambiarEstado.Click += new System.EventHandler(this.btnCambiarEstado_Click);
             // 
             // lblEstadisticas
             // 
@@ -106,7 +94,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblEstadisticas);
-            this.Controls.Add(this.btnCambiarEstado);
             this.Controls.Add(this.dgvContenedores);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -118,7 +105,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnCambiarEstado;
         private System.Windows.Forms.Label lblEstadisticas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;

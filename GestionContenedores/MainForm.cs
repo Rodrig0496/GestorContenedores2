@@ -85,5 +85,31 @@ namespace GestionContenedores
         {
             MostrarDashboard();
         }
+
+        private void btnRutaTrabajador_Click(object sender, EventArgs e)
+        {
+            // 1. Instanciamos el Login y activamos el "Modo Trabajador"
+            Login loginForm = new Login();
+            loginForm.EsModoTrabajador = true; // ¡Importante!
+
+            // 2. Mostramos el Login
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                // 3. Si el login fue exitoso, abrimos la vista de trabajadores
+                VistaTrabajador vistaRuta = new VistaTrabajador();
+                AbrirFormularioHijo(vistaRuta);
+
+                MessageBox.Show($"Bienvenido al sistema de rutas, {loginForm.UsuarioActual}.", "Sesión Iniciada");
+            }
+        }
+
+        private void btnEstadistica_Click(object sender, EventArgs e)
+        {
+            // Instanciamos la nueva vista
+            VistaEstadistica vistaStats = new VistaEstadistica();
+
+            // La mostramos en el panel central usando tu método existente
+            AbrirFormularioHijo(vistaStats);
+        }
     }
 }

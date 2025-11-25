@@ -36,6 +36,9 @@ namespace GestionContenedores
     partial void InsertContenedores(Contenedores instance);
     partial void UpdateContenedores(Contenedores instance);
     partial void DeleteContenedores(Contenedores instance);
+    partial void InsertTrabajadores(Trabajadores instance);
+    partial void UpdateTrabajadores(Trabajadores instance);
+    partial void DeleteTrabajadores(Trabajadores instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -84,6 +87,14 @@ namespace GestionContenedores
 			}
 		}
 		
+		public System.Data.Linq.Table<Trabajadores> Trabajadores
+		{
+			get
+			{
+				return this.GetTable<Trabajadores>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_ActualizarEstado")]
 		public int sp_ActualizarEstado([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NuevoEstado", DbType="VarChar(20)")] string nuevoEstado)
 		{
@@ -91,17 +102,17 @@ namespace GestionContenedores
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_InsertarContenedor")]
-		public int sp_InsertarContenedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(200)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Latitud", DbType="Float")] System.Nullable<double> latitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Longitud", DbType="Float")] System.Nullable<double> longitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estado", DbType="VarChar(20)")] string estado)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, direccion, latitud, longitud, estado);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_EliminarContenedor")]
 		public int sp_EliminarContenedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_InsertarContenedor")]
+		public int sp_InsertarContenedor([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Nombre", DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Direccion", DbType="VarChar(200)")] string direccion, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Latitud", DbType="Float")] System.Nullable<double> latitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Longitud", DbType="Float")] System.Nullable<double> longitud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Estado", DbType="VarChar(20)")] string estado)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nombre, direccion, latitud, longitud, estado);
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -397,6 +408,260 @@ namespace GestionContenedores
 					this._Estado = value;
 					this.SendPropertyChanged("Estado");
 					this.OnEstadoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Trabajadores")]
+	public partial class Trabajadores : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _DNI;
+		
+		private string _Nombres;
+		
+		private string _Apellidos;
+		
+		private string _Cargo;
+		
+		private string _Turno;
+		
+		private bool _Estado;
+		
+		private string _PasswordHash;
+		
+		private string _UsuarioLogin;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDNIChanging(string value);
+    partial void OnDNIChanged();
+    partial void OnNombresChanging(string value);
+    partial void OnNombresChanged();
+    partial void OnApellidosChanging(string value);
+    partial void OnApellidosChanged();
+    partial void OnCargoChanging(string value);
+    partial void OnCargoChanged();
+    partial void OnTurnoChanging(string value);
+    partial void OnTurnoChanged();
+    partial void OnEstadoChanging(bool value);
+    partial void OnEstadoChanged();
+    partial void OnPasswordHashChanging(string value);
+    partial void OnPasswordHashChanged();
+    partial void OnUsuarioLoginChanging(string value);
+    partial void OnUsuarioLoginChanged();
+    #endregion
+		
+		public Trabajadores()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DNI", DbType="VarChar(8) NOT NULL", CanBeNull=false)]
+		public string DNI
+		{
+			get
+			{
+				return this._DNI;
+			}
+			set
+			{
+				if ((this._DNI != value))
+				{
+					this.OnDNIChanging(value);
+					this.SendPropertyChanging();
+					this._DNI = value;
+					this.SendPropertyChanged("DNI");
+					this.OnDNIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombres", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombres
+		{
+			get
+			{
+				return this._Nombres;
+			}
+			set
+			{
+				if ((this._Nombres != value))
+				{
+					this.OnNombresChanging(value);
+					this.SendPropertyChanging();
+					this._Nombres = value;
+					this.SendPropertyChanged("Nombres");
+					this.OnNombresChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellidos", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Apellidos
+		{
+			get
+			{
+				return this._Apellidos;
+			}
+			set
+			{
+				if ((this._Apellidos != value))
+				{
+					this.OnApellidosChanging(value);
+					this.SendPropertyChanging();
+					this._Apellidos = value;
+					this.SendPropertyChanged("Apellidos");
+					this.OnApellidosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cargo", DbType="VarChar(50)")]
+		public string Cargo
+		{
+			get
+			{
+				return this._Cargo;
+			}
+			set
+			{
+				if ((this._Cargo != value))
+				{
+					this.OnCargoChanging(value);
+					this.SendPropertyChanging();
+					this._Cargo = value;
+					this.SendPropertyChanged("Cargo");
+					this.OnCargoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Turno", DbType="VarChar(20)")]
+		public string Turno
+		{
+			get
+			{
+				return this._Turno;
+			}
+			set
+			{
+				if ((this._Turno != value))
+				{
+					this.OnTurnoChanging(value);
+					this.SendPropertyChanging();
+					this._Turno = value;
+					this.SendPropertyChanged("Turno");
+					this.OnTurnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Estado", DbType="Bit NOT NULL")]
+		public bool Estado
+		{
+			get
+			{
+				return this._Estado;
+			}
+			set
+			{
+				if ((this._Estado != value))
+				{
+					this.OnEstadoChanging(value);
+					this.SendPropertyChanging();
+					this._Estado = value;
+					this.SendPropertyChanged("Estado");
+					this.OnEstadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="VarChar(255)")]
+		public string PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this.OnPasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHash = value;
+					this.SendPropertyChanged("PasswordHash");
+					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioLogin", DbType="VarChar(50)")]
+		public string UsuarioLogin
+		{
+			get
+			{
+				return this._UsuarioLogin;
+			}
+			set
+			{
+				if ((this._UsuarioLogin != value))
+				{
+					this.OnUsuarioLoginChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioLogin = value;
+					this.SendPropertyChanged("UsuarioLogin");
+					this.OnUsuarioLoginChanged();
 				}
 			}
 		}

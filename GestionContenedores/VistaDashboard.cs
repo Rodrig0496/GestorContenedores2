@@ -55,7 +55,6 @@ namespace GestionContenedores
             // Pasamos los permisos al control de mapa incrustado
             miVistaMapaDashboard.EstablecerPermisos(_nivelPermisoUsuario);
             // Suscribimos los eventos del mapa para que sigan funcionando (editar/eliminar/nuevo)
-            miVistaMapaDashboard.EditarSolicitado += MiVistaMapaDashboard_EditarSolicitado;
             miVistaMapaDashboard.EliminarSolicitado += MiVistaMapaDashboard_EliminarSolicitado;
             miVistaMapaDashboard.NuevoContenedorSolicitado += MiVistaMapaDashboard_NuevoContenedorSolicitado;
 
@@ -166,23 +165,33 @@ namespace GestionContenedores
             // Esto abrirá el login si es necesario y esperará el resultado.
             if (!_verificadorPermisosFn()) return;
 
+            string direccionEncontrada = "";
+
+            try
+            {
+                // Usamos una lista de Placemarks para recibir el resultado
+                List<GMap.NET.Placemark> placemarks = null;
+
+                // Intentamos obtener la dirección usando OpenStreetMap (Es gratis y no pide API Key)
+                // Nota: Aunque uses Google en el mapa visual, puedes usar OSM para obtener la dirección
+                var estado = GMap.NET.MapProviders.GMapProviders.OpenStreetMap.GetPlacemarks(punto, out placemarks);
+
+                if (estado == GMap.NET.GeoCoderStatusCode.G_GEO_SUCCESS && placemarks != null && placemarks.Count > 0)
+                {
+                    direccionEncontrada = placemarks[0].Address;
+                }
+            }
+            catch (Exception)
+            {
+                // Si falla (por internet o lo que sea), simplemente dejamos la dirección vacía
+                direccionEncontrada = "";
+            }
+
             // 2. Si pasa la verificación, procedemos con la acción
-            var formNuevo = new CambioEstado(_listaContenedores);
-            formNuevo.PrellenarCoordenadas(punto.Lat, punto.Lng);
+            var formNuevo = new CambioEstado();
+            formNuevo.PrellenarDatos(punto.Lat, punto.Lng, direccionEncontrada);
             formNuevo.ContenedorAgregado += (s, args) => CargarDatosDashboard();
             formNuevo.ShowDialog();
-        }
-
-        private void MiVistaMapaDashboard_EditarSolicitado(object sender, int idContenedor)
-        {
-            // 1. VERIFICACIÓN DE SEGURIDAD
-            if (!_verificadorPermisosFn()) return;
-
-            // 2. Proceder
-            var formEditar = new CambioEstado(_listaContenedores);
-            formEditar.SeleccionarContenedorPorId(idContenedor);
-            formEditar.EstadoCambiado += (s, args) => CargarDatosDashboard();
-            formEditar.ShowDialog();
         }
 
         private void MiVistaMapaDashboard_EliminarSolicitado(object sender, int idContenedor)
